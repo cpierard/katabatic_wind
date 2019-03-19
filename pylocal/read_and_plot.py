@@ -33,9 +33,9 @@ def extraer_datos(nombre_h5):
 
     return T, ρ, t, u, v, ω, p, T_x, T_y
 
-T_dat , ρ_dat, t_dat, u_dat, v_dat, ω_dat, p_dat, T_x_dat, T_y_dat = extraer_datos('../katabatic_wind_2/katabatic_wind_2_s1.h5')
+T_dat , ρ_dat, t_dat, u_dat, v_dat, ω_dat, p_dat, T_x_dat, T_y_dat = extraer_datos('../katabatic_rand_ic/katabatic_rand_ic_s1.h5')
 
-plot_field = u_dat #np.sqrt(T_x_dat**2 + T_y_dat**2)
+plot_field = v_dat #np.sqrt(T_x_dat**2 + T_y_dat**2)
 v_max = plot_field.max() #1500
 v_min = plot_field.min()
 
@@ -46,7 +46,7 @@ x, y = np.mgrid[slice(0, 1.07, dx), slice(0, 0.56, dy)]
 
 k = 1
 
-for i in range(0,40):
+for i in range(0,80):
 
     if t_dat[i] < 100:
         time_str = str(t_dat[i])[:4]
@@ -68,7 +68,7 @@ for i in range(0,40):
     cbar = plt.colorbar(p, cax=cbaxes, orientation = 'horizontal')
 
     h = '%03d'%k
-    plt.savefig('../snapshots/s_3/s3_kat'+ h)
+    plt.savefig('../snapshots/s_rand_1/s_rand'+ h)
     k += 1
     plt.close(fig)
 

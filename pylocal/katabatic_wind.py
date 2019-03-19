@@ -93,19 +93,19 @@ y = domain.grid(1,scales=domain.dealias)
 xm, ym = np.meshgrid(x,y)
 
 #Computing initial profile for density (maybe not necesary)
-T_i = np.zeros((512,64))+ 10
-T_i[0:20, :] = np.zeros((20,64)) + 5
+T_i = np.zeros((512,64))+ 10 - np.random.rand(512,64)
+#_i[0:20, :] = np.zeros((20,64)) + 5
 T['g'] = T_i
 ρ['g'] = P0/((T['g']+273) * 287)
 # Initial timestep
 dt = 0.001
 # Integration parameters
-solver.stop_sim_time = 10
+solver.stop_sim_time = 20
 solver.stop_wall_time = np.inf
 solver.stop_iteration = np.inf
 
 # Analysis
-snapshots = solver.evaluator.add_file_handler('../katabatic_wind_2', sim_dt=0.25, max_writes=1200)
+snapshots = solver.evaluator.add_file_handler('../katabatic_rand_ic', sim_dt=0.25, max_writes=1200)
 snapshots.add_system(solver.state)
 snapshots.add_task("dx(v)- uy", name='vort')
 snapshots.add_task("dx(T)", name='T_x')
