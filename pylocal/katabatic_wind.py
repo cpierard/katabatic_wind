@@ -66,15 +66,15 @@ problem.add_equation("vy - dy(v) = 0")
 
 #Definig Boundary Conditions
 problem.add_bc("left(T) = T_b")
-problem.add_bc("right(T) = T_top")
+problem.add_bc("right(Ty) = 0") #No heat flux in the top Boundary
 
 problem.add_bc("left(u) = 0")
-problem.add_bc("right(u) = 0")
+problem.add_bc("right(uy) = 0") #Free-slip boundary condition
 
 problem.add_bc("left(v) = 0")
 problem.add_bc("right(v) = 0", condition="(nx != 0)")
 
-problem.add_bc("right(p) = 0", condition="(nx == 0)")
+problem.add_bc("right(p) = P0", condition="(nx == 0)") #at the top of the P = P0 (In all the domain except for small fluctuatuations)
 
 #Defining the solver used
 solver = problem.build_solver(de.timesteppers.RK222) #Runge-Kutta order 2

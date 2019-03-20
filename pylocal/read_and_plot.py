@@ -35,7 +35,7 @@ def extraer_datos(nombre_h5):
 
 T_dat , ρ_dat, t_dat, u_dat, v_dat, ω_dat, p_dat, T_x_dat, T_y_dat = extraer_datos('../katabatic_rand_ic/katabatic_rand_ic_s1.h5')
 
-plot_field = v_dat #np.sqrt(T_x_dat**2 + T_y_dat**2)
+plot_field = u_dat #np.sqrt(T_x_dat**2 + T_y_dat**2)
 v_max = plot_field.max() #1500
 v_min = plot_field.min()
 
